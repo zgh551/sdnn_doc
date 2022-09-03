@@ -16,14 +16,35 @@ SDNN 是一个基于开源编译器框架TVM的端到端的AI编译器框架，S
 
 .. toctree::
    :maxdepth: 2
-   :numbered:
-   :caption: SDNN内容:
+   :caption: 快速入门
+   :name: quickstart
 
-   license
-   docker
-   sdnn_build
-   deploy
-   inference
+   quickstart/quickstart
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: SDNN基础
+   :name: sdnn_base
+
+   sdnn_base/license
+   sdnn_base/docker
+   sdnn_base/sdnn_build
+   sdnn_base/deploy
+   sdnn_base/inference
+
+.. toctree::
+   :maxdepth: 2
+   :caption: SDNN进阶
+   :name: sdnn_advanced
+
+   sdnn_advanced/slimai_firmware_path
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 附录
+
+   appendix/operator_support
 
 
 Indices and tables
