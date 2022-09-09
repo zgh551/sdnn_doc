@@ -13,15 +13,30 @@ SDNN编译
 使用步骤
 ========
 
+获取工具
+--------
+
+通过 `客户支持系统 <https://www.semidrive.com/>`_ ，获取SDNN工具包。
+
+或者点击下表版本链接获取工具：
+
++-----------+----------------------+
+| 版本      | 说明                 |
++===========+======================+
+| `v2_2_3`_ | 支持编译LOG文件生成; |
++-----------+----------------------+
+
+.. _v2_2_3: https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz
+
 安装工具
 --------
 
-通过 `客户支持系统 <https://www.semidrive.com/>`_ ，获取SDNN工具包，然后执行下述安装操作：
+然后执行下述安装操作：
 
 .. code-block:: shell
    :linenos:
 
-   $ pip install sdnn_cl-2.2.0-cp36-cp36m-linux_x86_64.whl
+   $ pip install sdnn_cl-2.2.3-cp36-cp36m-linux_x86_64.whl
 
 .. note::
    #. 该工具需安装在 **章节2** 描述的docker环境中，其它环境可能会因为缺乏编译工具链而无法使用；
@@ -177,7 +192,7 @@ json配置文件的完整格式如下：
     "metric": {
         "method": "TopK",
         "params": [
-            "5"
+            5
         ]
     },
     "quant": {

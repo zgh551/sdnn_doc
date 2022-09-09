@@ -72,16 +72,30 @@ examples主要用于说明如何使用 ``API`` 接口和如何在不同的目标
 sdnn_test工具
 =============
 
-sdnn_test工具包含如下功能：
+``sdnn_test`` 工具包含如下功能：
 
-#. SlimAI环境自检；
+#. SlimAI设备自检；
 #. 模型性能评估；
-#. 模型精度评估；
+#. 模型精度评估(分类)；
+
+
+获取工具
+--------
+
+点击下表版本链接获取工具：
+
++-----------+-----------------------+
+| 版本      | 说明                  |
++===========+=======================+
+| `v1_0_2`_ | 支持分类模型精度评估; |
++-----------+-----------------------+
+
+.. _v1_0_2: https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_test_release.tgz
 
 帮助信息
 --------
 
-sdnn_test运行时添加 ``--help`` 或 ``-h`` 参数，可以输出软件相关信息：
+``sdnn_test`` 运行时添加 ``--help`` 或 ``-h`` 参数，可以输出软件相关信息：
 
 .. code-block:: bash
    :linenos:
@@ -131,7 +145,7 @@ sdnn_test运行时添加 ``--help`` 或 ``-h`` 参数，可以输出软件相关
 自检
 ----
 
-运行sdnn_test程序可以用于运行环境的自检，输出如下LOG：
+运行 ``sdnn_test`` 程序可以用于运行环境的自检，输出如下 **LOG** ：
 
 .. code-block:: bash
    :linenos:
@@ -154,7 +168,7 @@ sdnn_test运行时添加 ``--help`` 或 ``-h`` 参数，可以输出软件相关
 调试信息
 --------
 
-sdnn_test运行时添加 ``--debug`` 或 ``-d`` 参数，使能调试信息输出，输出LOG如下：
+``sdnn_test`` 运行时添加 ``--debug`` 或 ``-d`` 参数，使能调试信息输出，输出 **LOG** 如下：
 
 .. code-block:: bash
    :linenos:
@@ -183,7 +197,7 @@ sdnn_test运行时添加 ``--debug`` 或 ``-d`` 参数，使能调试信息输�
 软件版本
 ^^^^^^^^
 
-包含sdnn_test软件版本号和tvm runtime库的版本号。其中，runtime库的版本用于判断模型so库是否于runtime库版本匹配。
+包含 ``sdnn_test`` 软件版本号和tvm runtime库的版本号。其中，runtime库的版本用于判断模型so库是否于runtime库版本匹配。
 
 节点结构
 ^^^^^^^^
@@ -194,7 +208,7 @@ sdnn_test运行时添加 ``--debug`` 或 ``-d`` 参数，使能调试信息输�
 性能评估
 --------
 
-sdnn_test运行时添加 ``--performance`` 或 ``-p`` 参数，使能模型性能评估功能，输出LOG如下：
+``sdnn_test`` 运行时添加 ``--performance`` 或 ``-p`` 参数，使能模型性能评估功能，输出LOG如下：
 
 .. code-block:: bash
    :linenos:
@@ -224,7 +238,7 @@ sdnn_test运行时添加 ``--performance`` 或 ``-p`` 参数，使能模型性�
 精度评估
 --------
 
-sdnn_test运行时添加 ``--accuracy`` 或 ``-a`` 参数，使能模型精度评估功能，输出LOG如下：
+``sdnn_test`` 运行时添加 ``--accuracy`` 或 ``-a`` 参数，使能模型精度评估功能，输出LOG如下：
 
 .. code-block:: bash
    :linenos:
@@ -248,7 +262,7 @@ sdnn_test运行时添加 ``--accuracy`` 或 ``-a`` 参数，使能模型精度�
 部署json格式说明
 ----------------
 
-sdnn_build工具编译模型会同时生成 ``模型库文件(so)`` 和 ``部署配置文件(.deploy.json)`` ，通过编译时指定 ``--save`` 参数，可指定文件的保存路径。 关于json文件的格式详见如下：
+``sdnn_build`` 工具编译模型会同时生成 ``模型库文件(so)`` 和 ``部署配置文件(.deploy.json)`` ，通过编译时指定 ``--save`` 参数，可指定文件的保存路径。 关于json文件的格式详见如下：
 
 .. code-block:: json
 
@@ -282,7 +296,7 @@ sdnn_build工具编译模型会同时生成 ``模型库文件(so)`` 和 ``部署
      "metric": {
     "method": "TopK",
     "params": [
-      "5"
+      5
     ],
     "annotation": "label.txt"
      }
