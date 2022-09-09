@@ -35,9 +35,14 @@ SDNN 是一个基于开源编译器框架TVM的端到端的AI编译器框架，S
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
    :caption: SDNN进阶
    :name: sdnn_advanced
 
+   sdnn_advanced/slimai_quantize_config
+   sdnn_advanced/slimai_data_prepare
+   sdnn_advanced/slimai_quantize_optim
+   sdnn_advanced/slimai_restrictions
    sdnn_advanced/slimai_firmware_path
 
 .. toctree::
