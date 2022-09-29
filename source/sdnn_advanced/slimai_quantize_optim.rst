@@ -212,7 +212,7 @@ custom_pp=yolo时，目前支持最多3个尺度的检测featuremap，它有一�
 - nms所需要的iou阈值，格式为iou_threshold=浮点阈值，例如iou_threshold=0.6
 - 网络输出的数据layout，格式为layout=排布格式，排布格式仅支持HWC和CHW。举个具体实例，如果onnx网络输出的size形如13x13x255那么设置layout=HWC，
 
-.. figure:: ../media/onnx_output.png
+.. figure:: ../_static/onnx_output.png
    :alt: onnx_output
    :align: center
 
@@ -340,14 +340,14 @@ SegStats
 
 - 自定义metric步骤：
 
-1. 用户在模型cfg文件中定义metric的名字，并以此名命名新的类文件于TVM/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_plugin/下。
+1. 用户在模型cfg文件中定义metric的名字，将此文件的绝对路径传递给CUSTOM_METRIC_PATH环境变量。
 2. 对1.中定义的metric类进行细节实现。
 3. 在cfg中添加output_debug=2选项，运行量化编译模型命令，获取中间结果，对自定义的metric进行调试。
 4. 将cfg中的output_debug=2选项去除，运行量化编译模型命令，完成模型编译。
 
 - 自定义metric类的调测
 
-TVM/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_test.py可对用户定义好的metric类进行调试和测试。具体需要配置的字段见下注释部分：
+path/to/sdnn_model_zoo/metric/metric_test.py可对用户定义好的metric类进行调试和测试。具体需要配置的字段见下注释部分：
 
 .. code-block:: python
 
@@ -408,13 +408,31 @@ TVM/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_test.py可对用
    metric_cls = faceboxes_map
    metric_input = faceboxes/imagelist threshold=0.6
 
-2. 对应用户需要在tvm/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_plugin/下添加faceboxes_map.py文件(或置于用户自己定义的其他路径，并将此路径设置为环境变量CUSTOM_METRIC_PATH)并在其中定义faceboxes_map类，且必须继承自custom_metric_base。如下示例：
+2. 用户需要创建faceboxes_map.py并在其中定义faceboxes_map类，同时用户需要将faceboxes_map.py的绝对路径传递给CUSTOM_METRIC_PATH环境变量，例如本示例中将faceboxes_map.py放置于path/to/sdnn_model_zoo/metric/下，故而需要将path/to/sdnn_model_zoo/metric/传递于CUSTOM_METRIC_PATH（为了便于测试和规范，建议定义的类文件均放置在此路径下）。faceboxes_map类以及其他用户自定义的metric类必须继承自custom_metric_base。如下示例：
 
-.. figure:: ../media/faceboxes_map.png
-   :alt: faceboxe_map
-   :align: center
+.. code-block:: python
 
-此类的成员函数中__init__、init_params、load_and_analysis、accumulate_results四个函数为custom_metric_base类定义子类必须要实现的。__init__初始化metric类需要使用的变量。init_params用于解析用户定义cfg里面metric选项配置的参数。load_and_analysis函数为metric类的计算入口。进入load_and_analysis函数，首先调用_prep_filelist。_prep_filelist函数读取blobsfile 和 imglist输出blob文件，blobsfile文件为模型的直接输出。接着调用_compute_map函数，在_compute_map函数中，调用后处理函数(用户自己提供)、调用标签解析函数、调用度量计算实现函数、得到metric结果。
+   @metric_register.metric_register
+   class faceboxes_map(custom_metric_base)
+      def __init__(self):
+
+      def init_params(self,otrl_params,model=None):
+
+      def _setup_map(self, gt, image_files):
+
+      def _compute_map(self, outputdir, blobs, thres):
+
+      def _prep_filelist(self,blobfiles,imglist):
+
+      def load_and_analysis(self,blobdata, gt_img_list, count, verbose, imglist=[]):
+
+      def accumulate_results(self, results, profile):
+
+
+此类的成员函数中 ``__init__`` 、 ``init_params`` 、 ``load_and_analysis`` 、 ``accumulate_results`` 四个函数为 **custom_metric_base** 类定义子类必须要实现的。
+- __init__: 初始化metric类需要使用的变量。
+- init_params: 用于解析用户定义cfg里面metric选项配置的参数。
+- load_and_analysis: 函数为metric类的计算入口。进入load_and_analysis函数，首先调用_prep_filelist。_prep_filelist函数读取blobsfile 和 imglist输出blob文件，blobsfile文件为模型的直接输出。接着调用_compute_map函数，在_compute_map函数中，调用后处理函数(用户自己提供)、调用标签解析函数、调用度量计算实现函数、得到metric结果。
 
 .. attention::
 
@@ -472,7 +490,7 @@ TVM/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_test.py可对用
 混合8bit/16bit量化需要按照以下步骤操作：
 
 1. 在cfg文件的quantizatin选项下添加Mix=True选项。以打开混合精度量化的开关并获取到.dot文件。
-2. 利用得到的.dot文件，用户编写yaml文件(其中指定混个精度的节点名字或者类型以及数据类型)，在Mix=True选项下添加nodekind_datatype或者nodename_datatype选项，并将yaml文件名字传递过去，并编译量化模型。
+2. 利用得到的.dot文件，用户编写yaml文件(其中指定混合精度的节点名字或者类型以及数据类型)，在Mix=True选项下添加nodekind_datatype或者nodename_datatype选项，并将yaml文件名字传递过去，并编译量化模型。
 
 在cfg文件中的quantization下添加Mix=True选项，
 
@@ -484,7 +502,7 @@ TVM/python/tvm/sdrv/backend_plugins/slimai_custom_metric/metric_test.py可对用
    Mix=True
    ...
 
-开启编译，此时在用户指定的output_dir路径下回生成dot_path文件夹，此文件夹下包含的是一些量化过程中的.dot文件，找到其中以_before_requantization.dot结尾的dot文件。用户需要编写一个yaml文件来指出对哪些节点的输入或者输出类型进行何种变化。yaml的编写方式有两种，按照节点名字(nodename_datatypes)指定输入输出类型或者按照节点类型(nodekind_datatypes)指定输入输出类型。下为按照节点名字(nodename_datatypes)指定输入输出类型示例：
+开启编译，此时在用户指定的output_dir路径下会生成dot_path文件夹，此文件夹下包含的是一些量化过程中的.dot文件，找到其中以_before_requantization.dot结尾的dot文件。用户需要编写一个yaml文件来指出对哪些节点的输入或者输出类型进行何种变化。yaml的编写方式有两种，按照节点名字(nodename_datatypes)指定输入输出类型或者按照节点类型(nodekind_datatypes)指定输入输出类型。下为按照节点名字(nodename_datatypes)指定输入输出类型示例：
 
 .. code-block:: shell
 
