@@ -2,25 +2,25 @@
 部署环境配置
 ============
 
-请通过 `客户支持系统 <https://www.semidrive.com/>`_ ，获取相应系统的runtime库文件。
+可以通过 `客户支持系统 <https://www.semidrive.com/>`_ ，获取相应系统的runtime库文件，也可通过如下链接点击下载。
 
 .. tabs::
 
    .. tab:: Linux
 
-      1. `runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
-      2. `opencv库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
+      1. `linux_runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-linux.tgz>`_
+      2. `linux_opencv库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/opencv_deploy_linux.run>`_
 
    .. tab:: Android
 
-      1. `环境配置脚本 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
-      2. `libcpp库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
-      3. `runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
-      4. `opencv库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
+      1. `环境配置脚本 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/android_envsetup.sh>`_
+      2. `android_libcpp库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/libcpp_shared_android.run>`_
+      3. `android_runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-android.tgz>`_
+      4. `android_opencv库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/opencv_deploy_android.run>`_
 
    .. tab:: QNX
 
-      1. `runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_release.tgz>`_
+      1. `qnx_runtime库 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-qnx.tgz>`_
 
 .. important::
 

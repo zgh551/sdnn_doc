@@ -82,15 +82,26 @@ sdnn_test工具
 获取工具
 --------
 
-点击下表版本链接获取工具：
+获取不同平台的测试工具：
 
-+-----------+-----------------------+
-| 版本      | 说明                  |
-+===========+=======================+
-| `v1_0_2`_ | 支持分类模型精度评估; |
-+-----------+-----------------------+
+.. tabs::
 
-.. _v1_0_2: https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/sdnn_test_release.tgz
+   .. tab:: Linux-x86_64
+
+      `sdnn_test_x86 <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/x86_64-linux_sdnn_test.tgz>`_
+
+   .. tab:: Linux-aarch64
+
+      `sdnn_test_linux <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-linux_sdnn_test.tgz>`_
+
+   .. tab:: Android-aarch64
+
+      `sdnn_test_android <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-android_sdnn_test.tgz>`_
+
+   .. tab:: QNX-aarch64
+
+      `sdnn_test_qnx <https://gitee.com/zgh551/sdnn_doc/releases/download/2.2.3/aarch64-qnx_sdnn_test.tgz>`_
+
 
 帮助信息
 --------
