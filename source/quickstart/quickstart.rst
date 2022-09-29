@@ -93,7 +93,7 @@
 ^^^^^^^^
 
 将编译生成的模型so库和SlimAI固件elf文件，拷贝到目标板，可以通过 ``scp`` 或 ``adb`` 实现文件的传输。
-其中，elf文件需要放置到如下固定目录：
+其中，``elf`` 文件需要放置到如下固定目录：
 
 - Linux: ``/lib/firmware``
 - Android: ``/vendor/firmware``

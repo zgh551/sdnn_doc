@@ -49,11 +49,3 @@ SDNN 是一个基于开源编译器框架TVM的端到端的AI编译器框架，S
    :caption: 附录
 
    appendix/operator_support
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

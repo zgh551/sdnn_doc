@@ -23,7 +23,7 @@ copyright = '2022, Nanjing SemiDrive® Technology Co., Ltd. All Rights Reserved.
 author = 'SemiDrive'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.8'
+release = '2.2.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -41,6 +41,7 @@ extensions = [
   'sphinx.ext.ifconfig',
   'sphinx.ext.viewcode',
   'sphinx.ext.githubpages',
+  'sphinx_tabs.tabs',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

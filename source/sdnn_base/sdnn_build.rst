@@ -120,109 +120,109 @@ SDNN编译
    #. 如果指定的是模型文件，按需指定模型的相关参数，编译时会自动生成该模型对应的json配置文件，并将命令行中指定的参数保存到配置文件中，方便后续编译使用json配置文件;
    #. 如果指定的是json配置文件，该配置文件中包含了模型相关的参数信息，如果模型参数信息需要修改，可以打开文件修改，或者在编译时添加需要更改的参数来修正模型参数。
 
-模型文件
-""""""""
+.. tabs::
 
-**单模型编译**
+   .. tab:: 模型文件
 
-1. *单文件模型*
+      **单模型编译**
 
-例如onnx模型：
+      1. *单文件模型*
 
-.. code-block:: bash
+      例如onnx模型：
 
-   $ sdnn_build -f ./mobilenet_v2.onnx
+      .. code-block:: bash
 
-
-2. *多文件模型*
-
-例如caffe模型，包含两个文件：
-
-.. code-block:: bash
-
-   $ sdnn_build -f ./mobilenet_v1.caffemodel -f ./mobilenet_v1.prototxt
+         $ sdnn_build -f ./mobilenet_v2.onnx
 
 
-.. note::
+      2. *多文件模型*
 
-   - 文件先后无限制
+      例如caffe模型，包含两个文件：
 
+      .. code-block:: bash
 
-**多模型编译**
-
-通过 ``--file`` 或 ``-f`` 参数指定多个模型的路径。
-
-.. code-block:: bash
-
-   $ sdnn_build -f ./mobilenet_v2.onnx -f ./mobilenet_v1.caffemodel -f ./mobilenet_v1.prototxt
-
-JSON配置文件
-""""""""""""
-
-json配置文件的完整格式如下：
-
-.. code-block:: json
-   :linenos:
-
-   {
-    "model": {
-        "path": [
-            "xxx.caffemodel",
-            "xxx.prototxt"
-        ],
-        "name": "xxx",
-        "type": "xxx",
-        "channel_order": "RGB",
-        "domain": "Classification",
-        "output_layout": "NHWC",
-        "mean": [
-            0.485,
-            0.456,
-            0.406
-        ],
-        "std": [
-            0.229,
-            0.224,
-            0.225
-        ]
-    },
-    "dataset": {
-        "name": "ImageNet"
-    },
-    "metric": {
-        "method": "TopK",
-        "params": [
-            5
-        ]
-    },
-    "quant": {
-        "bit": "8bit"
-    },
-    "cfg": "./xxx.cfg"
-   }
+         $ sdnn_build -f ./mobilenet_v1.caffemodel -f ./mobilenet_v1.prototxt
 
 
-.. note::
+      .. note::
 
-   #. 第一次执行模型文件编译后，会自动生成与该模型对应的cfg.json配置文件，当然也可以手动创建，按照上述完整格式填充必要信息；
-   #. json配置文件中的一些参数，如果在编译时没有指定，会填充默认参数，使用自动生成的cfg.json文件前，请确认文件内容是否与模型匹配；
-   #. 如果json文件中指定cfg字段，则会忽略quant和model字段中的参数，优先采用指定的配置文件进行NPU量化；
-   #. 如果json文件中无cfg字段，则会根据quant和model字段中的参数,自动生成对应NPU的配置文件，文件后缀.autogen.cfg，文件路径与模型文件同目录。
+         - 文件先后无限制
 
 
-**单模型编译**
+      **多模型编译**
 
-.. code-block:: bash
+      通过 ``--file`` 或 ``-f`` 参数指定多个模型的路径。
 
-   sdnn_build -f model1.json
+      .. code-block:: bash
 
-**多模型编译**
-
-.. code-block:: bash
-
-   sdnn_build -f model1.json -f model2.json -f model3.json
+         $ sdnn_build -f ./mobilenet_v2.onnx -f ./mobilenet_v1.caffemodel -f ./mobilenet_v1.prototxt
 
 
+   .. tab:: JSON文件
+
+      **单模型编译**
+
+      .. code-block:: bash
+
+         sdnn_build -f model1.json
+
+      **多模型编译**
+
+      .. code-block:: bash
+
+         sdnn_build -f model1.json -f model2.json -f model3.json
+
+      .. hint::
+
+         json配置文件的完整格式如下：
+
+         .. code-block:: json
+            :linenos:
+
+            {
+             "model": {
+                 "path": [
+                     "xxx.caffemodel",
+                     "xxx.prototxt"
+                 ],
+                 "name": "xxx",
+                 "type": "xxx",
+                 "channel_order": "RGB",
+                 "domain": "Classification",
+                 "output_layout": "NHWC",
+                 "mean": [
+                     0.485,
+                     0.456,
+                     0.406
+                 ],
+                 "std": [
+                     0.229,
+                     0.224,
+                     0.225
+                 ]
+             },
+             "dataset": {
+                 "name": "ImageNet"
+             },
+             "metric": {
+                 "method": "TopK",
+                 "params": [
+                     5
+                 ]
+             },
+             "quant": {
+                 "bit": "8bit"
+             },
+             "cfg": "./xxx.cfg"
+            }
+
+
+.. attention::
+
+   #. 第一次执行模型文件编译后，会自动生成与该模型对应的 **cfg.json** 配置文件，当然也可以手动创建，按照上述完整格式填充必要信息；
+   #. json配置文件中的一些参数，如果在编译时没有指定，会填充默认参数，使用自动生成的 **cfg.json** 文件前，请确认文件内容是否与模型匹配；
+   #. 如果json文件中指定 **cfg字段** ，则会忽略 **quant** 和 **model** 字段中的参数，优先采用指定的配置文件进行NPU量化；
+   #. 如果json文件中 ``无`` **cfg字段** ，则会根据 **quant** 和 **model** 字段中的参数,自动生成对应NPU的配置文件，文件后缀 **.autogen.cfg** ，文件路径与模型文件同目录。
 
 CFG配置文件
 ^^^^^^^^^^^
@@ -325,29 +325,33 @@ ELF组合模式
 
 .. image:: ../_static/elf_mode.png
 
-merge模式
-"""""""""
+.. tabs::
 
-只有单模型编译支持 **merge模式** ，该模式下，将模型的elf文件集成进模型的so文件中，最终编译只输出单个 **so文件** 。
+   .. tab:: separate
 
-.. note::
+      模型编译时默认采用 **separate** 模式，该模式下，模型的 **so** 文件与 **elf** 文件独立生成。 其中，**elf** 文件包含所有模型的量化参数，**so** 文件只要包含对应模型的网络结构。
 
-    该模式的存在主要方便快速测试，最终产品部署，建议采用 **separate模式** 。
+      .. note::
 
-separate模式
-""""""""""""
+         如果是多模型编译，该参数的设置无效，强制为 **separate** 模式, 且会生成多个模型的 **so** 文件和单个 **elf** 文件。
 
-模型编译默认采用 **separate模式** 。该模式下，模型的 **so文件** 与 **elf文件** 独立生成。 如果是多模型编译，该参数的设置无效，强制为 **separate模式**, 且会生成多个模型的 **so文件** 和单个 **elf文件** 。其中，**elf文件** 包含所有模型的量化参数，**so文件** 只要包含对应模型的网络结构。
+   .. tab:: merge
 
-模型部署时，需要手动拷贝 **elf文件** 到目标板指定目录下：
+      只有单模型编译支持 **merge** 模式，该模式下，将模型的 **elf** 文件集成进模型的 **so** 文件中，最终编译只输出单个 **so** 文件。
+
+      .. note::
+
+         该模式的存在主要方便快速测试，最终产品部署，建议采用 **separate** 模式。
+
+模型部署时，需要手动拷贝 **elf** 文件到目标板指定目录下：
 
 - **linux** ： ``/lib/firmware``
 - **android** ： ``/vendor/firmware``
 - **qnx** : ``/lib/firmware``
 
-.. note::
+.. warning::
 
-   - qnx系统部署、多进程开发和Android系统APK代码开发都需要使用 **separate模式**；
+   qnx系统部署、多进程开发和Android系统APK代码开发都需要使用 **separate** 模式；
 
 ELF文件生成
 ^^^^^^^^^^^
