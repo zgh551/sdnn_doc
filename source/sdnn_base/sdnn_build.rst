@@ -7,7 +7,7 @@ SDNN编译
 
 ``sdnn_build`` 工具实现模型编译，将不同框架的模型文件转换成SDNN框架统一的文件格式，该模型文件可以送到NPU仿真器进行模型的性能和精度评估，也可以拷贝到目标设备端，通过调用相应的runtime库，实现不同OS的部署。
 
-.. image:: ../_static/sdnn_build_framework.png
+.. image:: ../_static/images/devp/sdnn_build_framework.png
 
 
 使用步骤
@@ -321,7 +321,7 @@ ELF组合模式
 
 两种模式的区别如下图所示：
 
-.. image:: ../_static/elf_mode.png
+.. image:: ../_static/images/devp/elf_mode.png
 
 .. tabs::
 

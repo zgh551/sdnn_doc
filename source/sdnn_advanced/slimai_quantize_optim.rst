@@ -212,7 +212,7 @@ custom_pp=yolo时，目前支持最多3个尺度的检测featuremap，它有一�
 - nms所需要的iou阈值，格式为iou_threshold=浮点阈值，例如iou_threshold=0.6
 - 网络输出的数据layout，格式为layout=排布格式，排布格式仅支持HWC和CHW。举个具体实例，如果onnx网络输出的size形如13x13x255那么设置layout=HWC，
 
-.. figure:: ../_static/onnx_output.png
+.. figure:: ../_static/images/devp/onnx_output.png
    :alt: onnx_output
    :align: center
 
