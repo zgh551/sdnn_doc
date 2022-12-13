@@ -23,7 +23,7 @@ copyright = '2022, Nanjing SemiDrive® Technology Co., Ltd. All Rights Reserved.
 author = 'SemiDrive'
 
 # The full version, including alpha/beta/rc tags
-release = '2.2.3'
+release = '3.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -42,7 +42,19 @@ extensions = [
   'sphinx.ext.viewcode',
   'sphinx.ext.githubpages',
   'sphinx_tabs.tabs',
+  'sphinxmark',
 ]
+
+sphinxmark_enable = True
+sphinxmark_div = 'document'
+sphinxmark_image = 'text'
+#sphinxmark_text = "SemiDrive Confidential For Desay Use Only"
+#sphinxmark_text = "SemiDrive Confidential For xxx Use Only"
+sphinxmark_text = "SemiDrive Confidential"
+sphinxmark_text_size = 30
+sphinxmark_text_width = 400
+sphinxmark_text_rotation = 45
+sphinxmark_text_spacing = 300
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -70,7 +82,7 @@ html_theme = 'sphinx_rtd_theme'
 
 html_theme_options = {
   'display_version': False,
-  'navigation_depth': 2,
+  'navigation_depth': 3,
   'collapse_navigation': True
 }
 
